@@ -15,12 +15,12 @@ with open('network-snapshot-008800.pkl', 'rb') as file:
 for epoch in range(100000):
     seed = random.randint(0,10000)
     # Generate latent vectors.
-    latents = np.random.RandomState(2).randn(10000, *Gs.input_shapes[0][1:]) # 1000 random latents
+    latents = np.random.RandomState(seed).randn(10000, *Gs.input_shapes[0][1:]) # 1000 random latents
     
     for k in range(100):
         idx = []
         for i in range(10):
-            idx.append(random.randint(0,10000))
+            idx.append(random.randint(0,10000-1))
         
         latents = latents[idx] # hand-picked top-10
         
