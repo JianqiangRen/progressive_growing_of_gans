@@ -9,20 +9,20 @@ tf.InteractiveSession()
 
 # Import official CelebA-HQ networks.
 # with open('karras2018iclr-celebahq-1024x1024.pkl', 'rb') as file:
-with open('network-snapshot-008800.pkl', 'rb') as file:
+with open('network-snapshot-011003.pkl', 'rb') as file:
     G, D, Gs = pickle.load(file)
 
 for epoch in range(100000):
     seed = random.randint(0,10000)
     # Generate latent vectors.
-    latents = np.random.RandomState(seed).randn(10000, *Gs.input_shapes[0][1:]) # 1000 random latents
+    father_latents = np.random.RandomState(seed).randn(10000, *Gs.input_shapes[0][1:]) # 1000 random latents
     
     for k in range(100):
         idx = []
         for i in range(10):
             idx.append(random.randint(0,10000-1))
-        
-        latents = latents[idx] # hand-picked top-10
+        print('idx:{}'.format(idx))        
+        latents = father_latents[idx] # hand-picked top-10
         
         # latents = latents[[477, 56, 83, 887, 583, 391, 86, 340, 341, 415]] # hand-picked top-10
         
